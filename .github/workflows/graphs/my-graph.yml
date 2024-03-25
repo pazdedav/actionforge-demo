@@ -1,0 +1,46 @@
+entry: gh-start
+executions:
+  - src:
+      node: gh-start
+      port: exec-on-push
+    dst:
+      node: gh-checkout
+      port: exec
+  - src:
+      node: gh-start
+      port: exec-on-pull_request
+    dst:
+      node: gh-checkout
+      port: exec
+  - src:
+      node: gh-checkout
+      port: exec
+    dst:
+      node: gh-azure-login-v2-0-0-butterfly-gray-orange
+      port: exec
+connections: []
+nodes:
+  - id: gh-start
+    type: gh-start@v1
+    position:
+      x: 100
+      y: 100
+    settings:
+      folded: false
+  - id: gh-checkout
+    type: github.com/actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+    position:
+      x: 450
+      y: 100
+    settings:
+      folded: false
+  - id: gh-azure-login-v2-0-0-butterfly-gray-orange
+    type: github.com/azure/login@8c334a195cbb38e46038007b304988d888bf676a
+    position:
+      x: 930
+      y: 110
+    settings:
+      folded: false
+registries:
+  - github.com/azure/login@v2.0.0
+description: ''
